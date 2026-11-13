@@ -16,8 +16,8 @@ SKIP={'.git','node_modules','__pycache__','reports','dist'}
 def check():
     errors=[];count=0
     try:
-        tracked=subprocess.run(['git','ls-files','--cached','--others','--exclude-standard'],cwd=ROOT,capture_output=True,text=True,check=True).stdout.splitlines()
-        paths=[ROOT/name for name in tracked]
+        tracked=subprocess.run(['git','ls-files','-z','--cached','--others','--exclude-standard'],cwd=ROOT,capture_output=True,text=True,check=True).stdout.split('\0')
+        paths=[ROOT/name for name in tracked if name]
     except subprocess.CalledProcessError:
         paths=[p for p in ROOT.rglob('*') if not (set(p.relative_to(ROOT).parts)&SKIP)]
     for p in paths:
