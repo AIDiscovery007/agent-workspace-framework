@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agent Workspace Bootstrap"
+  short_description: "部署并验收成员隔离、定时任务、共享错题本与治理闭环的工作区"
+  default_prompt: "使用 $workspace-bootstrap 在指定工作区部署框架并逐项验收。"

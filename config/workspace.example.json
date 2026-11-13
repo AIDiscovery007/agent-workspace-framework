@@ -1,0 +1,22 @@
+{
+  "owner": "owner@example.invalid",
+  "model": "YOUR_VERIFIED_MODEL",
+  "timezone": "Asia/Shanghai",
+  "herdr_space": "",
+  "archive_document_id": "",
+  "notifications_enabled": false,
+  "binaries": {},
+  "governance_full_access": false,
+  "tasks": {"organize": false, "daily-log": false, "weekly-report": false},
+  "hi": {
+    "chat_id": "",
+    "bot_contact_id": "",
+    "bot_name": "小跟班",
+    "browser_domain": "",
+    "browser_bin": "",
+    "browser_engine_dir": "",
+    "auto_register": false,
+    "network_access": false
+  },
+  "members": []
+}

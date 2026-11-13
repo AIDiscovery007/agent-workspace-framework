@@ -1,0 +1,16 @@
+#!/usr/bin/env python3
+"""Credential-free client for the bridge's account-scoped upload broker."""
+import json,os,socket,sys
+try:
+    with socket.socket(socket.AF_UNIX,socket.SOCK_STREAM) as client:
+        client.settimeout(300)
+        client.connect(os.environ['HI_MEMBER_UPLOAD_SOCKET'])
+        args=sys.argv[1:]
+        for i,item in enumerate(args):
+            if item=='--file-path' and i+1<len(args):args[i+1]=os.path.abspath(args[i+1])
+        client.sendall((json.dumps(args)+'\n').encode())
+        response=json.loads(client.makefile('rb').readline(1024*1024))
+    if not response['ok']:raise ValueError(response['error'])
+    print(json.dumps(response['result'],ensure_ascii=False,indent=2))
+except Exception as exc:
+    print(str(exc),file=sys.stderr);sys.exit(1)

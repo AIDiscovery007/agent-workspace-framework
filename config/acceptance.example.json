@@ -1,0 +1,11 @@
+{
+  "deployment": "fill-on-target-host",
+  "scope": ["core"],
+  "checks": [
+    {"id": "CORE-01", "status": "pending", "evidence": []},
+    {"id": "CORE-02", "status": "pending", "evidence": []},
+    {"id": "CORE-03", "status": "pending", "evidence": []}
+  ],
+  "external_services": "not-enabled",
+  "note": "Add every enabled module from docs/acceptance.md; pending is not passed."
+}
