@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Offline regression in a disposable deployment. Never touches the live workspace."""
 import argparse
+import importlib.util
 import json
 import os
 import re
@@ -12,6 +13,8 @@ import time
 import aw
 
 def verify(node=False):
+    if importlib.util.find_spec('PIL') is None:
+        raise SystemExit('Missing Pillow. Activate the project venv and run: python -m pip install -r requirements.lock')
     reports=[]
     with tempfile.TemporaryDirectory(prefix='agent-workspace-verify-') as tmp:
         root=Path(tmp).resolve()/'workspace';root.mkdir()

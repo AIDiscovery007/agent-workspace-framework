@@ -22,4 +22,6 @@ python3 scripts/verify.py --node --report reports/verification.json
 
 上述结果证明本地可移植源码与夹具契约。GitHub Actions 已配置 macOS/Linux × Python 3.11/3.13；跨系统结果以仓库实际运行记录为准，不能由本机结果推定。
 
+2026-11-16 发布复验：首次 CI 发现基础依赖声明遗漏 Pillow，本机已有安装掩盖了问题。已将 Pillow 12.3.0 加入基础锁定文件并补齐安装流程；使用不继承本机包的全新 venv，仅安装该锁定依赖后，276 项 Python 测试和 WebSocket 测试全部通过。后续 CI 也按锁定依赖准备环境，各矩阵独立运行。
+
 本次公共化没有调用真实 Hi 群、创建真实治理 Agent 或启用新的定时任务。新部署的 Hi 身份/收发、模型与 Herdr 会话、实际文件沙箱、可选浏览器/媒体、后台时间窗口仍需完成 [外部验收](acceptance.md)。敏感扫描是审阅辅助，不是无泄漏的数学保证。

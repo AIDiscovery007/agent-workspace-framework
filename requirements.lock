@@ -1,0 +1,2 @@
+# Image decoding is part of bridge acceptance, independently of optional audio/video.
+pillow==12.3.0

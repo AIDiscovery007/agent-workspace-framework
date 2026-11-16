@@ -13,6 +13,9 @@
 ```bash
 git clone https://github.com/AIDiscovery007/agent-workspace-framework.git
 cd agent-workspace-framework
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.lock
 python3 scripts/aw.py init --root ../my-agent-workspace --profile core
 python3 scripts/aw.py doctor --root ../my-agent-workspace
 python3 scripts/demo.py

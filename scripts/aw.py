@@ -2,6 +2,7 @@
 """Materialize an agent workspace without copying credentials or live state."""
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -170,6 +171,7 @@ def doctor(root, live=False):
         p=root/relative;add('member:'+relative,p.is_dir() and p.resolve()==p.absolute() and p.is_relative_to(root/'成员工作区'))
     if settings['profile']=='full' or live:
         add('macOS',sys.platform=='darwin','Full reference deployment uses launchd and macOS file sandbox')
+        add('image-decoder:Pillow',importlib.util.find_spec('PIL') is not None,'Install requirements.lock in the deployment Python environment')
         for name,value in settings['binaries'].items():add('binary:'+name, bool(shutil.which(value)))
         for account in cfg.get('member_workspaces',{}):
             names=['standardize-sop','record-incident',*cfg.get('member_skills',{}).get(account,[])]

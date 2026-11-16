@@ -8,7 +8,7 @@ description: 从 agent-workspace-framework 仓库部署、迁移和验收包含�
 ## 新部署
 
 1. **环境与范围。** 检查 Python ≥3.11、目标目录和用户要求模块。完整参考栈见 [部署](../../docs/deployment.md)。现有配置可查询时先查询，凭据仅本机隐藏输入。
-2. **core。** 运行 `python3 scripts/aw.py init --root <绝对目标> --profile core`、doctor 和 `python3 scripts/verify.py --node`。core 只生成框架，不启动服务；新目标不得包含已有业务文件。保存输出，必须实际通过后才报告可运行。
+2. **core。** 先按部署手册创建独立 Python 环境并安装 `requirements.lock`，再运行 `python3 scripts/aw.py init --root <绝对目标> --profile core`、doctor 和 `python3 scripts/verify.py --node`。core 只生成框架，不启动服务；新目标不得包含已有业务文件。保存输出，必须实际通过后才报告可运行。
 3. **full。** 用户需要群聊/常驻/治理时，补齐 [配置契约](../../docs/deployment.md)；准备新的正式目录或按升级流程合并。先验证 CLI 身份、机器人在群、真实 WS 事件、应用回读、真实只读模型回合，再冻结基线与启动服务。测试发送属于部署范围时说明目标和标记后执行；不通知无关群。
 4. **能力。** 对每个成员同步真实账号、个人目录、共享只读路径、Skill 发现入口、工具能力与会话指引。配置不等于真实沙箱，按 [权限验收](../../docs/permissions.md)实测允许/拒绝项。
 5. **验收。** 执行 [矩阵](../../docs/acceptance.md)。只把本次实际完成的条目标 passed；缺外部授权/登录/依赖用 blocked 或 pending，继续完成独立可做的模块。服务启动不代替业务闭环。

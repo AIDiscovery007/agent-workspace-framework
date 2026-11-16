@@ -4,6 +4,14 @@
 
 基础框架：Python ≥3.11、Git、macOS 或 Linux。完整参考栈：macOS、Node ≥22、Codex CLI/App Server、已授权 Hi CLI、Hi 应用机器人；独立可见 session 需要 Herdr 的 `herdr-app` 与 `hc`。各部署使用自己的账号、应用、凭据和状态，一个机器人应用只由一套服务消费。
 
+先在仓库创建独立 Python 环境并安装锁定依赖；后续命令使用这个环境。Pillow 用于图片解码和基础验收，与可选音视频依赖分开。安装器会记录当前解释器的绝对路径，正式部署后保留此环境位置。
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.lock
+```
+
 先运行已安装工具的 `--help`/`--version`。Codex 完整适配器要求 `--no-daemon`、App Server stdio、自定义文件权限、archive/delete 与可读取本轮元数据；缺功能停止该适配器，不通过移除沙箱解决。具体安装用各产品官方/组织认可的渠道。Hi CLI 和 Herdr 不作为公共 npm 依赖分发。
 
 配置从 `config/workspace.example.json` 复制到本机（文件名用 `workspace.local.json`，已忽略）。必须替换真实 owner/model/Hi 群及 bot ID；设置 `herdr_space`、档案根 ID、启用任务和成员。`owner` 取 `hi search:me`，机器人/群 ID 从当前平台查询；Herdr 先读 `herdr-app --skill`、`hc --skill`、`herdr-app commands`，再 `herdr-app ls` 查询 space。

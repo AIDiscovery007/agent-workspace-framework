@@ -11,7 +11,7 @@ import subprocess
 import sys
 from urllib.parse import unquote
 ROOT=Path(__file__).resolve().parents[1]
-SKIP={'.git','node_modules','__pycache__','reports','dist'}
+SKIP={'.git','.venv','node_modules','__pycache__','reports','dist'}
 
 def check():
     errors=[];count=0
