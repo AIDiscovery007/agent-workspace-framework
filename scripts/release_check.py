@@ -26,6 +26,8 @@ def check():
         if p.suffix in ('.sqlite','.sqlite3','.log') or p.name in ('credentials.json','state.json','baseline.json','config.toml','workspace.local.json'):
             errors.append(f'{rel}: private runtime artifact');continue
         s=p.read_text()
+        if p.suffix in ('.js','.cjs','.mjs') and re.search(r'''\brequire\(\s*["']/[^"']*/node_modules/''',s):
+            errors.append(f'{rel}: absolute external package import')
         patterns=[r'/Users/(?!a/)[A-Za-z][^/\s]+/',r'gh[pousr]_[A-Za-z0-9]{25,}',r'github_pat_[A-Za-z0-9_]{30,}',r'AKID[A-Za-z0-9]{24,}',r'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',r'https?://[^\s"<>]+webhook[^\s"<>]+[?&]key=[A-Za-z0-9-]{16,}']
         if p.name!='release_check.py':
             for pattern in patterns:

@@ -6,7 +6,7 @@ const path = require('node:path');
 const http = require('node:http');
 const {spawn} = require('node:child_process');
 const readline = require('node:readline');
-const {WebSocketServer} = require('/usr/local/lib/node_modules/@xhs/claude-hi/node_modules/ws');
+const {WebSocketServer} = require('ws');
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(),'hi-ws-test-'));
 const server = http.createServer((req,res) => {
   res.setHeader('Content-Type','application/json');
